@@ -10,7 +10,11 @@ class Channel:
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
-        self.channel_id = channel_id
+        self._channel_id = channel_id
+
+    @property
+    def channel_id(self):
+        return self._channel_id
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
@@ -74,6 +78,7 @@ class Channel:
 
     def to_json(self, name_of_file):
         data = {
+            'channel_id': self.channel_id,
             'title': self.title,
             'description': self.description,
             'url': self.url,
