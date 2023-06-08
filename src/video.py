@@ -31,26 +31,54 @@ class Video:
     @property
     def title(self):
         """Возвращает название видео"""
-        title = self.get_data()['items'][0]['snippet']['title']
-        return title
+        try:
+            title = self.get_data()['items'][0]['snippet']['title']
+            return title
+        except IndexError:
+            self.title = None
 
     @property
     def url(self):
         """Возвращает ссылку на видео"""
-        url = 'https://www.youtube.com/watch?v=' + self._video_id
-        return url
+        try:
+            url = 'https://www.youtube.com/watch?v=' + self._video_id
+            return url
+        except IndexError:
+            self.url = None
 
     @property
     def view_count(self):
         """Возвращает количество просмотров на видео"""
-        view_count = self.get_data()['items'][0]['statistics']['viewCount']
-        return view_count
+        try:
+            view_count = self.get_data()['items'][0]['statistics']['viewCount']
+            return view_count
+        except IndexError:
+            self.view_count = None
 
     @property
     def like_count(self):
         """Возвращает количество просмотров на видео"""
-        like_count = self.get_data()['items'][0]['statistics']['likeCount']
-        return like_count
+        try:
+            like_count = self.get_data()['items'][0]['statistics']['likeCount']
+            return like_count
+        except IndexError:
+            self.like_count = None
+
+    @title.setter
+    def title(self, value):
+        self._title = value
+
+    @url.setter
+    def url(self, value):
+        self._url = value
+
+    @view_count.setter
+    def view_count(self, value):
+        self._view_count = value
+
+    @like_count.setter
+    def like_count(self, value):
+        self._like_count = value
 
 
 class PLVideo(Video):

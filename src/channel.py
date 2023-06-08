@@ -2,8 +2,6 @@ import json
 import os
 from googleapiclient.discovery import build
 
-YT_API_KEY = 'AIzaSyD8HPnvS0S1GG_Fxs0djyR8zFkWcg4ZR9M'
-
 
 class Channel:
     """Класс для ютуб-канала"""
@@ -79,7 +77,8 @@ class Channel:
         view_count = self.get_data()['items'][0]['statistics']['viewCount']
         return view_count
 
-    def print_info(self) -> None:
+    @staticmethod
+    def print_info() -> None:
         """Выводит в консоль информацию о канале."""
 
         api_key: str = os.getenv('YT_API_KEY')
